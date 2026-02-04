@@ -1,0 +1,38 @@
+.cat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cat-card:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: #6366f1;
+    transform: translateY(-10px);
+}
+
+.cart-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.25rem;
+    border-radius: 20px;
+    width: 100%;
+    outline: none;
+    color: white;
+}
+
+.cart-input:focus { border-color: #6366f1; }
+
+.page-section {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
