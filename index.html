@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTRA TECH | re:Store Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#050505] text-white font-sans overflow-x-hidden">
+
+    <header class="fixed top-0 w-full z-[100] border-b border-white/5 bg-black/60 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <h1 class="text-2xl font-black tracking-tighter cursor-pointer" onclick="showPage('home')">
+                ULTRA<span class="text-indigo-500 italic">TECH</span>
+            </h1>
+            <div class="flex items-center gap-6">
+                <button onclick="showPage('cart')" class="relative p-2 text-gray-400 hover:text-white transition">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-indigo-600 text-[10px] w-5 h-5 rounded-full flex items-center justify-center text-white font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="pt-24 min-h-screen">
+        
+        <section id="page-home" class="page-section">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <div class="relative rounded-[40px] overflow-hidden bg-gradient-to-br from-indigo-900/40 to-black border border-white/10 p-12 mb-12 flex flex-col items-center text-center">
+                    <h2 class="text-5xl md:text-7xl font-black mb-6 tracking-tight uppercase">Будущее <br> уже в <span class="text-indigo-500">России</span></h2>
+                    <p class="text-gray-400 max-w-2xl mb-10 text-lg">Оригинальная техника от ведущих брендов. Официальная гарантия, быстрая доставка и премиальный сервис в каждой детали.</p>
+                    <button onclick="showPage('catalog')" class="bg-white text-black px-12 py-5 rounded-2xl font-black hover:bg-indigo-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl">
+                        ОТКРЫТЬ КАТАЛОГ
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 p-8 rounded-[30px] border border-white/5">
+                        <i class="fa-solid fa-shield-halved text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">100% Оригинал</h3>
+                        <p class="text-gray-500 text-sm">Поставляем технику напрямую от дистрибьюторов. Каждое устройство проходит проверку по серийному номеру.</p>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-[30px] border border-white/5">
+                        <i class="fa-solid fa-truck-fast text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Доставка по РФ</h3>
+                        <p class="text-gray-500 text-sm">Более 150 точек выдачи и курьерская доставка до двери в любой город России за 2-4 дня.</p>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-[30px] border border-white/5">
+                        <i class="fa-solid fa-microchip text-indigo-500 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Сервис 24/7</h3>
+                        <p class="text-gray-500 text-sm">Собственные сервисные центры и поддержка в Telegram. Мы всегда на связи с нашими клиентами.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-catalog" class="page-section hidden">
+            <div class="max-w-7xl mx-auto px-6 py-12 text-center">
+                <h2 class="text-4xl font-black mb-12">ВЫБЕРИТЕ КАТЕГОРИЮ</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div onclick="renderProducts('Phones')" class="cat-card group">
+                        <i class="fa-solid fa-mobile-screen-button text-4xl mb-4 group-hover:text-indigo-500 transition"></i>
+                        <span class="text-xl font-bold">ТЕЛЕФОНЫ</span>
+                    </div>
+                    <div onclick="renderProducts('Audio')" class="cat-card group">
+                        <i class="fa-solid fa-headphones text-4xl mb-4 group-hover:text-indigo-500 transition"></i>
+                        <span class="text-xl font-bold">НАУШНИКИ</span>
+                    </div>
+                    <div onclick="renderProducts('Tablets')" class="cat-card group">
+                        <i class="fa-solid fa-tablet-screen-button text-4xl mb-4 group-hover:text-indigo-500 transition"></i>
+                        <span class="text-xl font-bold">ПЛАНШЕТЫ</span>
+                    </div>
+                    <div onclick="renderProducts('Accessories')" class="cat-card group">
+                        <i class="fa-solid fa-charging-station text-4xl mb-4 group-hover:text-indigo-500 transition"></i>
+                        <span class="text-xl font-bold">АКСЕССУАРЫ</span>
+                    </div>
+                </div>
+                <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                    </div>
+            </div>
+        </section>
+
+        <section id="page-item" class="page-section hidden">
+            <div id="product-detail-container"></div>
+        </section>
+
+        <section id="page-cart" class="page-section hidden">
+            <div class="max-w-4xl mx-auto px-6 py-12">
+                <h2 class="text-4xl font-black mb-10">ВАШ ЗАКАЗ</h2>
+                <div id="cart-full-list" class="space-y-6 mb-10"></div>
+                
+                <div class="bg-white/5 rounded-[30px] p-8 border border-white/10 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="cart-city" placeholder="Ваш город" class="cart-input">
+                        <div class="flex gap-2">
+                            <input type="text" id="promo-input" placeholder="Промокод" class="cart-input">
+                            <button onclick="applyPromo()" class="bg-indigo-600 px-6 rounded-2xl font-bold">OK</button>
+                        </div>
+                    </div>
+                    <div class="border-t border-white/5 pt-6 flex justify-between items-end">
+                        <div>
+                            <p class="text-gray-500 uppercase text-xs font-bold tracking-widest">Итого к оплате</p>
+                            <h3 id="final-price" class="text-4xl font-black">0 ₽</h3>
+                            <p id="promo-msg" class="text-green-500 text-sm mt-1"></p>
+                        </div>
+                        <button onclick="checkout()" class="bg-white text-black px-10 py-5 rounded-2xl font-black hover:bg-indigo-500 hover:text-white transition">КУПИТЬ СЕЙЧАС</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
